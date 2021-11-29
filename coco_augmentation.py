@@ -111,33 +111,53 @@ img = load_image(['103_0ac05322-414f-4cfb-9daa-528c4bfad3c3.jpg'])[0]
 #Apply the augmentation pipeline
 augmented_images, augmented_bboxes = get_augmented([img], [bboxes], transform)
 
-# augmented_image = augmented_images[0]
-# augmented_bboxe = augmented_bboxes[0]
-#Loop through the augmented images
-for idx,(augmented_image, augmented_bbox) in enumerate(zip(augmented_images, augmented_bboxes)):
-    #Draw the bounding boxes with id
+# # augmented_image = augmented_images[0]
+# # augmented_bboxe = augmented_bboxes[0]
+# #Loop through the augmented images
+# for idx,(augmented_image, augmented_bbox) in enumerate(zip(augmented_images, augmented_bboxes)):
+#     #Draw the bounding boxes with id
     
-    for bbox in augmented_bbox:
-        x, y, w, h,_ = bbox
-        #Convert the bounding box to integer
-        x, y, w, h = int(x), int(y), int(w), int(h)
-        #Define the color of the bounding box
-        color = (255, 0, 0)
-        cv2.rectangle(augmented_image, (x, y), (x+w, y+h),color, 2)
-        cv2.putText(augmented_image, str(idx), (x, y), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2)
-    #save the image using idx
-    cv2.imwrite('augmented_image_{}.jpg'.format(idx), augmented_image)
+#     for bbox in augmented_bbox:
+#         x, y, w, h,_ = bbox
+#         #Convert the bounding box to integer
+#         x, y, w, h = int(x), int(y), int(w), int(h)
+#         #Define the color of the bounding box
+#         color = (255, 0, 0)
+#         cv2.rectangle(augmented_image, (x, y), (x+w, y+h),color, 2)
+#         cv2.putText(augmented_image, str(idx), (x, y), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2)
+#     #save the image using idx
+#     cv2.imwrite('augmented_image_{}.jpg'.format(idx), augmented_image)
 
 
 
-# for bbox in augmented_bboxe:
-#     #Unpack the bounding box and convert to int
-#     x,y,w,h,_=bbox
-#     #Convert to int
-#     x,y,w,h = int(x),int(y),int(w),int(h)
-#     #Define the color of the bounding box 
-#     #Red
-#     color = (0,0,255)
+#Create a visualization function for a batch of images
+def plot_grid_bbox(images:list,bboxes:list, n_cols=2, n_rows=2,save_path=None):
+    fig, axes = plt.subplots(n_rows, n_cols, figsize=(n_cols*4, n_rows*4))
+    for i in range(n_rows):
+        for j in range(n_cols):
+            #Get the image
+            img = images[i*n_cols+j].astype(np.uint8)
+            #Draw the bounding boxes on the image
+            for bbox in bboxes[i*n_cols+j]:
+                x, y, w, h,_ = bbox
+                #Convert the bounding box to integer
+                x, y, w, h = int(x), int(y), int(w), int(h)
+                #Define the color of the bounding box
+                color = (255, 0, 0)
+                cv2.rectangle(img, (x, y), (x+w, y+h),color, 2)
+                cv2.putText(img, str(i*n_cols+j), (x, y), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2)
+            axes[i,j].imshow(img)
+            axes[i,j].axis('off')
+    
+    #Show the plot without hspace and wspace
+    plt.subplots_adjust(wspace=0, hspace=0)
+    plt.tight_layout()
+    # plt.show(block=False)
+    #Save the plot if a path is provided otherwise show the plot
+    if save_path is not None:
+        plt.savefig(save_path)
+    else:
+        plt.show()
+#Plot the images and bounding boxes
+plot_grid_bbox(augmented_images,augmented_bboxes, n_cols=4, n_rows=4,save_path='augmented_images.jpg')
 
-#     cv2.rectangle(augmented_image, (x, y), (x+w, y+h), color, 2)
-# cv2.imwrite('augmented.jpg',augmented_image)
