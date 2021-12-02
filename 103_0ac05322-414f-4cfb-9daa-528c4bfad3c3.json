@@ -1,0 +1,100 @@
+{
+    "annotations": [
+        {
+            "id": 22,
+            "image_id": 1,
+            "category_id": 1,
+            "bbox": [
+                0,
+                716,
+                41,
+                81
+            ]
+        },
+        {
+            "id": 22,
+            "image_id": 1,
+            "category_id": 1,
+            "bbox": [
+                1226,
+                736,
+                139,
+                104
+            ]
+        },
+        {
+            "id": 22,
+            "image_id": 1,
+            "category_id": 1,
+            "bbox": [
+                1450,
+                738,
+                205,
+                109
+            ]
+        },
+        {
+            "id": 22,
+            "image_id": 1,
+            "category_id": 1,
+            "bbox": [
+                1659,
+                446,
+                152,
+                303
+            ]
+        },
+        {
+            "id": 22,
+            "image_id": 1,
+            "category_id": 1,
+            "bbox": [
+                1927,
+                734,
+                89,
+                108
+            ]
+        },
+        {
+            "id": 22,
+            "image_id": 1,
+            "category_id": 1,
+            "bbox": [
+                2042,
+                745,
+                96,
+                121
+            ]
+        },
+        {
+            "id": 22,
+            "image_id": 1,
+            "category_id": 1,
+            "bbox": [
+                391,
+                699,
+                120,
+                124
+            ]
+        },
+        {
+            "id": 22,
+            "image_id": 1,
+            "category_id": 1,
+            "bbox": [
+                783,
+                701,
+                88,
+                93
+            ]
+        }
+    ],
+    "images": [
+        {
+            "id": 1,
+            "file_name": "103_0ac05322-414f-4cfb-9daa-528c4bfad3c3.jpg",
+            "width": 2560,
+            "height": 1440
+        }
+    ]
+}
